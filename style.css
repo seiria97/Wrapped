@@ -1,0 +1,466 @@
+/* ==========================================================================
+   WRAPPED — GLOBAL STYLESHEET
+   Shared design system for the whole site (index.html, create-gift.html,
+   and future pages). Extracted directly from the original index.html so
+   the visual identity stays exactly the same.
+
+   Sections:
+     1. Design tokens
+     2. Base / reset
+     3. Animations
+     4. Scroll-reveal utility
+     5. Navbar
+     6. Buttons
+     7. Hero
+     8. Gift box illustration
+     9. Icons
+    10. How it works
+    11. Featured preview
+    12. Testimonials
+    13. Final CTA
+    14. Footer
+    15. Onboarding / create-gift page (new — additive only)
+   ========================================================================== */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --cream: #FFF9F5;
+  --beige: #F6EFE8;
+  --blush: #F8D7DA;
+  --lavender: #E8DDF8;
+  --gold: #F4C95D;
+  --sage: #CFE8D2;
+  --charcoal: #2E2E2E;
+  --radius-lg: 28px;
+  --radius-md: 22px;
+  --radius-sm: 14px;
+}
+
+/* ---------- 2. Base / reset ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; border: none; cursor: pointer; }
+img, svg { display: block; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.opacity-70 { opacity: .7; }
+.opacity-65 { opacity: .65; }
+.opacity-60 { opacity: .6; }
+.opacity-50 { opacity: .5; }
+
+/* ---------- 3. Animations ---------- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(20px,-25px); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+@keyframes sparkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1.1) rotate(15deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+.float-anim { animation: float 6s ease-in-out infinite; }
+.twinkle-anim { animation: twinkle 3s ease-in-out infinite; }
+.sparkle-anim { animation: sparkle 2.4s ease-in-out infinite; }
+.pulse-anim { animation: pulse 1.8s ease-in-out infinite; }
+
+/* ---------- 4. Scroll-reveal utility ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(.2,.8,.2,1), transform 0.8s cubic-bezier(.2,.8,.2,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-anim, .twinkle-anim, .sparkle-anim, .pulse-anim { animation: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
+/* ---------- 5. Navbar ---------- */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  background: transparent; transition: all .5s ease;
+}
+.navbar.scrolled {
+  background: rgba(255,249,245,0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px -12px rgba(46,46,46,0.12);
+}
+.navbar-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  height: 80px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: 8px; font-size: 1.5rem; font-weight: 600; }
+.nav-links { display: flex; align-items: center; gap: 36px; }
+.nav-links a { font-size: 15px; font-weight: 500; opacity: .75; transition: opacity .2s ease; }
+.nav-links a:hover { opacity: 1; }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.menu-btn { display: none; background: none; }
+.mobile-menu {
+  display: none; flex-direction: column; gap: 16px;
+  padding: 0 24px 24px; background: rgba(255,249,245,0.97);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-size: 15px; font-weight: 500; }
+
+@media (max-width: 860px) {
+  .nav-links, .nav-right { display: none; }
+  .menu-btn { display: block; }
+}
+
+/* ---------- 6. Buttons ---------- */
+.btn-primary {
+  padding: 10px 20px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  background: linear-gradient(120deg, var(--gold), var(--blush));
+  color: var(--charcoal);
+  box-shadow: 0 6px 18px -6px rgba(244,201,93,.6);
+  transition: transform .25s ease;
+  display: inline-block;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  border: 1px solid rgba(46,46,46,0.15); background: transparent;
+  transition: background .25s ease;
+}
+.btn-outline:hover { background: rgba(255,255,255,.5); }
+
+.btn-hero {
+  padding: 14px 28px; border-radius: 999px; font-size: 15px; font-weight: 500;
+  background: linear-gradient(120deg, var(--gold), var(--blush));
+  color: var(--charcoal);
+  box-shadow: 0 12px 30px -10px rgba(244,201,93,.7);
+  transition: transform .25s ease;
+  display: inline-block;
+}
+.btn-hero:hover { transform: translateY(-2px); }
+
+.btn-final {
+  margin-top: 40px; padding: 16px 36px; border-radius: 999px; font-size: 16px; font-weight: 500;
+  background: linear-gradient(120deg, var(--gold), var(--blush)); color: var(--charcoal);
+  box-shadow: 0 20px 40px -15px rgba(244,201,93,.5);
+  transition: transform .25s ease;
+  display: inline-block;
+}
+.btn-final:hover { transform: translateY(-2px); }
+
+/* Disabled state, reused by the Continue CTA on create-gift.html */
+button:disabled,
+button[aria-disabled="true"],
+a[aria-disabled="true"] {
+  opacity: .45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ---------- 7. Hero ---------- */
+.hero { position: relative; padding: 160px 24px 112px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.blob { position: absolute; border-radius: 50%; opacity: .4; animation: floaty ease-in-out infinite; }
+.star {
+  position: absolute; border-radius: 50%; background: #fff;
+  box-shadow: 0 0 6px 2px rgba(244,201,93,0.6);
+}
+.hero-grid {
+  position: relative; max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+}
+.hero h1 {
+  font-size: 2.6rem; line-height: 1.12; font-weight: 600; letter-spacing: -0.01em;
+}
+.hero p.lead { margin-top: 24px; font-size: 1.125rem; line-height: 1.7; max-width: 540px; opacity: .7; }
+.hero-actions { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+}
+@media (min-width: 861px) {
+  .hero h1 { font-size: 3.75rem; line-height: 1.1; }
+}
+
+/* ---------- 8. Gift box illustration ---------- */
+.gift-wrap { width: 320px; height: 320px; margin: 0 auto; position: relative; max-width: 100%; }
+.gift-shadow {
+  position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%);
+  width: 220px; height: 34px; border-radius: 9999px;
+  background: radial-gradient(ellipse, rgba(46,46,46,0.18), transparent 70%);
+  filter: blur(4px);
+}
+.gift-scene { position: relative; width: 100%; height: 100%; }
+.gift-glow {
+  position: absolute; inset: 0; border-radius: 28px;
+  background: radial-gradient(circle at 50% 45%, rgba(244,201,93,0.45), transparent 65%);
+  filter: blur(18px); opacity: 0.35; transition: opacity .5s ease;
+}
+.gift-body {
+  position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%);
+  width: 210px; height: 160px; border-radius: 22px;
+  background: linear-gradient(160deg, var(--blush) 0%, var(--gold) 100%);
+  box-shadow: 0 25px 60px -15px rgba(46,46,46,0.35);
+}
+.gift-body::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 26px; background: var(--cream); opacity: 0.9;
+}
+.gift-lid {
+  position: absolute; left: 50%; bottom: 168px; transform: translateX(-50%);
+  width: 232px; height: 46px; border-radius: 20px;
+  background: linear-gradient(160deg, var(--lavender) 0%, var(--blush) 100%);
+  box-shadow: 0 12px 24px -8px rgba(46,46,46,0.25);
+  transition: bottom 0.5s ease-out;
+}
+.gift-lid::after {
+  content: ''; position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 30px; background: var(--cream); opacity: 0.9;
+}
+.gift-bow {
+  position: absolute; left: 50%; bottom: 204px; transform: translateX(-50%) rotate(0deg);
+  transition: all 0.5s ease;
+}
+.gift-wrap:hover .gift-glow { opacity: 1; }
+.gift-wrap:hover .gift-lid { bottom: 190px; }
+.gift-wrap:hover .gift-bow { bottom: 226px; transform: translateX(-50%) rotate(-4deg); }
+.icon-sparkle { position: absolute; }
+
+/* ---------- 9. Icons ---------- */
+.icon { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- 10. How it works ---------- */
+.how { padding: 112px 24px; }
+.section-title {
+  text-align: center; font-size: 2.5rem; font-weight: 600; margin-bottom: 64px;
+}
+.how-grid { max-width: 1100px; margin: 0 auto; position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; }
+.dot-line {
+  display: none; position: absolute; top: 64px; left: 16%; right: 16%;
+  border-top: 2px dashed rgba(46,46,46,0.15);
+}
+@media (min-width: 861px) { .dot-line { display: block; } }
+@media (max-width: 860px) { .how-grid { grid-template-columns: 1fr; } }
+.how-card {
+  position: relative; border-radius: 24px; padding: 32px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 15px 40px -20px rgba(46,46,46,0.2);
+  transition: transform .3s ease;
+}
+.how-card:hover { transform: translateY(-8px); }
+.how-icon {
+  width: 56px; height: 56px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+}
+.how-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 12px; }
+.how-card p { font-size: 15px; line-height: 1.6; opacity: .65; }
+
+/* ---------- 11. Featured preview ---------- */
+.preview { padding: 112px 24px; }
+.preview-intro { text-align: center; margin-bottom: 56px; }
+.preview-intro p { margin-top: 16px; font-size: 15px; opacity: .65; }
+.browser-mock {
+  max-width: 900px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden;
+  background: #fff; box-shadow: 0 40px 80px -30px rgba(46,46,46,0.35);
+}
+.browser-bar { display: flex; align-items: center; gap: 8px; padding: 14px 20px; background: var(--beige); }
+.browser-bar span { width: 12px; height: 12px; border-radius: 50%; }
+.preview-body {
+  position: relative; padding: 56px 32px;
+  background: linear-gradient(160deg, var(--cream), #fdf1f2);
+}
+@media (min-width: 700px) { .preview-body { padding: 56px 56px; } }
+.live-badge {
+  position: absolute; top: 24px; right: 24px; display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px;
+  background: var(--charcoal); color: var(--cream);
+}
+.live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.eyebrow { font-size: .875rem; letter-spacing: .05em; text-transform: uppercase; opacity: .5; }
+.preview-body h3 { margin-top: 8px; font-size: 1.9rem; font-weight: 600; max-width: 480px; }
+.preview-body p.desc { margin-top: 16px; max-width: 420px; font-size: 15px; line-height: 1.6; opacity: .7; }
+.preview-details {
+  margin-top: 40px; display: grid; grid-template-columns: 1fr; gap: 24px; align-items: end;
+}
+@media (min-width: 700px) { .preview-details { grid-template-columns: repeat(3, 1fr); } }
+.polaroids { display: flex; }
+.polaroid {
+  width: 80px; height: 96px; background: #fff; border-radius: 6px; box-shadow: 0 8px 18px -6px rgba(46,46,46,.3);
+  padding: 6px; margin-left: -24px;
+}
+.polaroid:first-child { margin-left: 0; }
+.polaroid .fill { width: 100%; height: 64px; border-radius: 3px; }
+.timeline { display: flex; align-items: center; gap: 8px; }
+.timeline-dots { display: flex; gap: 6px; }
+.timeline-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(46,46,46,.15); }
+.timeline-dots span.active { background: var(--gold); }
+
+/* ---------- 12. Testimonials ---------- */
+.testimonials { padding: 112px 24px; }
+.test-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+@media (max-width: 860px) { .test-grid { grid-template-columns: 1fr; } }
+.test-card {
+  border-radius: 24px; padding: 32px;
+  background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px -20px rgba(46,46,46,0.25);
+}
+.stars { display: flex; gap: 4px; margin-bottom: 20px; color: var(--gold); }
+.test-card p.quote { font-size: 15px; line-height: 1.6; opacity: .8; }
+.test-author { margin-top: 24px; display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-weight: 500; font-family: 'Playfair Display', serif;
+}
+.test-author .name { font-size: 14px; font-weight: 500; }
+
+/* ---------- 13. Final CTA ---------- */
+.final-cta {
+  position: relative; padding: 128px 24px; overflow: hidden; text-align: center; background: var(--charcoal);
+}
+.final-cta-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(244,201,93,0.25), transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(232,221,248,0.2), transparent 55%);
+}
+.final-cta-content { position: relative; max-width: 640px; margin: 0 auto; }
+.final-cta h2 { color: #fff; font-size: 2.5rem; font-weight: 600; }
+.final-cta p { margin-top: 20px; color: rgba(255,255,255,.7); font-size: 1.125rem; }
+
+/* ---------- 14. Footer ---------- */
+.footer { padding: 56px 24px; background: var(--cream); }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px;
+}
+@media (min-width: 700px) {
+  .footer-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+.footer-copy { font-size: 14px; opacity: .5; }
+
+/* ==========================================================================
+   15. ONBOARDING / CREATE-GIFT PAGE  (new — additive only)
+   index.html has no stats section and no occasion grid, so there is no
+   existing .occ-card / .stat-card to reuse for occasion selection. These
+   new rules borrow the same visual language already established by
+   .how-card (rounded 24px, soft shadow, translateY hover) and .live-badge
+   (charcoal pill) instead of introducing a different aesthetic.
+   ========================================================================== */
+
+/* Page hero: shorter version of .hero, no gift-box illustration */
+.page-hero { position: relative; padding: 152px 24px 64px; overflow: hidden; text-align: center; }
+.page-hero-inner { position: relative; max-width: 720px; margin: 0 auto; }
+.page-hero h1 { font-size: 2.25rem; font-weight: 600; letter-spacing: -0.01em; }
+@media (min-width: 861px) { .page-hero h1 { font-size: 3rem; } }
+.page-hero p.lead { margin: 20px auto 0; }
+
+/* Step progress indicator, built for reuse by editor.html / preview.html */
+.step-progress {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  margin-top: 40px; flex-wrap: wrap;
+}
+.step-progress .step {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500; opacity: .45;
+}
+.step-progress .step.active { opacity: 1; }
+.step-progress .step .dot {
+  width: 26px; height: 26px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+  background: rgba(46,46,46,0.08); color: var(--charcoal);
+}
+.step-progress .step.active .dot {
+  background: linear-gradient(120deg, var(--gold), var(--blush));
+}
+.step-progress .step.done .dot { background: var(--sage); }
+.step-progress .connector { width: 32px; height: 1px; background: rgba(46,46,46,0.15); }
+
+/* Occasion picker — same rhythm as .occasions/.how, new .occasion-card
+   reuses .how-card's rounded/shadow/hover language plus a selected state */
+.occasion-picker { padding: 24px 24px 96px; }
+.occasion-grid {
+  max-width: 1100px; margin: 0 auto; display: grid;
+  grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+@media (max-width: 860px) { .occasion-grid { grid-template-columns: repeat(2, 1fr); } }
+.occasion-card {
+  position: relative; border-radius: 24px; padding: 28px; min-height: 150px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 16px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 15px 40px -20px rgba(46,46,46,0.2);
+  transition: transform .3s ease, box-shadow .3s ease;
+  cursor: pointer; border: 2px solid transparent;
+  text-align: left; width: 100%; font-family: inherit; color: inherit;
+}
+.occasion-card:hover { transform: translateY(-8px); }
+.occasion-card.selected {
+  border-color: var(--charcoal);
+  box-shadow: 0 15px 40px -16px rgba(46,46,46,0.4);
+}
+.occasion-icon {
+  width: 48px; height: 48px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+}
+.occasion-card .title { font-size: 1.125rem; font-weight: 600; }
+.occasion-card .check {
+  position: absolute; top: 20px; right: 20px;
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1.5px solid rgba(46,46,46,0.25);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s ease, border-color .2s ease;
+}
+.occasion-card.selected .check { background: var(--charcoal); border-color: var(--charcoal); }
+.occasion-card .check svg { display: none; width: 12px; height: 12px; stroke: var(--cream); stroke-width: 3; }
+.occasion-card.selected .check svg { display: block; }
+
+/* Recipient card — same glass treatment as .how-card */
+.recipient-card {
+  max-width: 560px; margin: 0 auto 64px;
+  border-radius: var(--radius-md); padding: 32px;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 15px 40px -20px rgba(46,46,46,0.2);
+}
+.recipient-card label {
+  display: block; font-size: 13px; font-weight: 500; opacity: .6; margin-bottom: 8px;
+}
+.recipient-card input[type="text"] {
+  width: 100%; padding: 12px 16px; font-size: 15px; font-family: inherit;
+  border-radius: 999px; border: 1px solid rgba(46,46,46,0.15);
+  background: #fff; color: var(--charcoal);
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+.recipient-card input[type="text"]:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(244,201,93,0.25);
+}
+
+/* Sticky continue bar — same pill/blur language as .navbar.scrolled */
+.continue-bar {
+  position: sticky; bottom: 0; left: 0; right: 0; z-index: 40;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 20px 24px;
+  background: rgba(255,249,245,0.85);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(46,46,46,0.08);
+}
+.continue-bar .selection-hint { font-size: 14px; opacity: .6; }
+.continue-bar .btn-hero { padding: 12px 28px; }
