@@ -1,85 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Customize Your Gift — Wrapped</title>
-  <meta name="description" content="Add your words, memories, and personal touches to a Wrapped gift.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="editor.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Write Your Gift — Wrapped</title>
+<meta name="description" content="Write a heartfelt letter, add photos and stickers, and wrap it into a personalized digital gift on Wrapped." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <header class="navbar scrolled" id="navbar">
-    <div class="navbar-inner">
-      <a href="index.html" class="logo font-serif"><span>🎁</span><span>Wrapped</span></a>
-      <nav class="nav-links"><a href="index.html">Home</a><a href="#">Templates</a><a href="#">Gallery</a><a href="#">Pricing</a><a href="#">About</a></nav>
-      <div class="nav-right"><a href="#">Sign In</a><a href="create-gift.html" class="btn-primary">Create Gift</a></div>
-      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu"><svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+
+<!-- ============ NAVBAR (identical to other pages) ============ -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="logo font-serif"><span>🎁</span><span>Wrapped</span></a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">Templates</a>
+      <a href="#">Gallery</a>
+      <a href="#">Pricing</a>
+      <a href="#">About</a>
+    </nav>
+
+    <div class="nav-right">
+      <a href="#">Sign In</a>
+      <a href="create-gift.html" class="btn-primary">Create Gift</a>
     </div>
-    <div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="#">Templates</a><a href="#">Gallery</a><a href="#">Pricing</a><a href="#">About</a><a href="#">Sign In</a><a href="create-gift.html" class="btn-primary" style="width:fit-content">Create Gift</a></div>
-  </header>
 
-  <main class="editor-page">
-    <section class="editor-heading reveal">
-      <p class="eyebrow">Your digital gift</p>
-      <h1 class="font-serif">Make it unmistakably yours.</h1>
-      <p>Fill it with the little things that mean the most.</p>
-      <div class="step-progress" aria-label="Gift creation progress">
-        <div class="step done"><span class="dot">✓</span> Occasion</div><span class="connector"></span>
-        <div class="step done"><span class="dot">✓</span> Recipient</div><span class="connector"></span>
-        <div class="step active"><span class="dot">3</span> Customize</div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+      <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="#">Templates</a>
+    <a href="#">Gallery</a>
+    <a href="#">Pricing</a>
+    <a href="#">About</a>
+    <a href="#">Sign In</a>
+    <a href="create-gift.html" class="btn-primary" style="width:fit-content">Create Gift</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ PAGE HERO (compact — reuses .page-hero / .step-progress) ============ -->
+  <section class="page-hero" style="padding-bottom: 32px;">
+    <div class="page-hero-inner reveal">
+      <h1 class="font-serif">Let's put it into words.</h1>
+      <p class="lead opacity-70">Write from the heart — you can add photos, stickers, and music as you go.</p>
+
+      <div class="step-progress">
+        <div class="step done">
+          <span class="dot">✓</span> Occasion
+        </div>
+        <span class="connector"></span>
+        <div class="step done">
+          <span class="dot">✓</span> Recipient
+        </div>
+        <span class="connector"></span>
+        <div class="step active">
+          <span class="dot">3</span> Customize
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="editor-layout">
-      <form class="editor-form reveal" id="giftForm">
-        <div class="form-card">
-          <div class="form-card-heading"><span class="form-number">01</span><div><h2 class="font-serif">Start with a note</h2><p id="recipientPrompt">A few heartfelt words go a long way.</p></div></div>
-          <label for="giftTitle">Gift title</label>
-          <input id="giftTitle" maxlength="70" placeholder="Happy birthday to my favorite person">
-          <label for="giftMessage">Your message</label>
-          <textarea id="giftMessage" maxlength="700" rows="7" placeholder="Write from the heart…"></textarea>
-          <div class="character-count"><span id="characterCount">0</span> / 700</div>
+  <!-- ============ WRITING STUDIO ============ -->
+  <section class="studio">
+    <div class="studio-bg" aria-hidden="true">
+      <span class="float-token" style="top:8%; left:6%; animation-duration:9s;">🌸</span>
+      <span class="float-token" style="top:14%; left:88%; animation-duration:11s;">✨</span>
+      <span class="float-token" style="top:42%; left:3%; animation-duration:8s;">📎</span>
+      <span class="float-token" style="top:70%; left:92%; animation-duration:10s;">🌿</span>
+      <span class="float-token" style="top:85%; left:10%; animation-duration:12s;">💌</span>
+      <span class="float-token" style="top:30%; left:95%; animation-duration:9.5s;">⭐</span>
+    </div>
+
+    <!-- Floating toolbar -->
+    <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
+      <div class="toolbar-group">
+        <span class="toolbar-label">Font</span>
+        <select class="toolbar-select" id="fontSelect" aria-label="Font style">
+          <option value="handwritten" selected>Handwritten</option>
+          <option value="elegant">Elegant Serif</option>
+          <option value="modern">Modern Clean</option>
+        </select>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <div class="toolbar-group">
+        <span class="toolbar-label">Size</span>
+        <select class="toolbar-select" id="sizeSelect" aria-label="Text size">
+          <option value="small">Small</option>
+          <option value="medium" selected>Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <div class="toolbar-group" role="group" aria-label="Text alignment">
+        <button type="button" class="toolbar-btn active" data-align="left" title="Align left">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+        </button>
+        <button type="button" class="toolbar-btn" data-align="center" title="Align center">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+        </button>
+        <button type="button" class="toolbar-btn" data-align="right" title="Align right">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="6" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <div class="toolbar-group toolbar-btn-wrap">
+        <button type="button" class="toolbar-btn" id="stickerToggle" title="Add sticker" aria-haspopup="true" aria-expanded="false">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/></svg>
+        </button>
+        <div class="sticker-popover" id="stickerPopover">
+          <button type="button" data-sticker="❤️" title="Heart">❤️</button>
+          <button type="button" data-sticker="🌸" title="Flower">🌸</button>
+          <button type="button" data-sticker="🌷" title="Tulip">🌷</button>
+          <button type="button" data-sticker="⭐" title="Star">⭐</button>
+          <button type="button" data-sticker="✨" title="Sparkle">✨</button>
+          <button type="button" data-sticker="🎀" title="Ribbon">🎀</button>
+          <button type="button" data-sticker="🕊️" title="Dove">🕊️</button>
+          <button type="button" data-sticker="🍃" title="Leaf">🍃</button>
+          <button type="button" data-sticker="💫" title="Dizzy">💫</button>
+          <button type="button" data-sticker="🧸" title="Bear">🧸</button>
+        </div>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <div class="toolbar-group">
+        <button type="button" class="toolbar-btn" id="addPhotoToolbarBtn" title="Add photo">
+          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        </button>
+      </div>
+
+      <div class="toolbar-divider"></div>
+
+      <div class="toolbar-group">
+        <span class="toolbar-label">Theme</span>
+        <select class="toolbar-select" id="themeSelect" aria-label="Background theme">
+          <option value="vintage" selected>Vintage Diary</option>
+          <option value="romantic">Romantic Letter</option>
+          <option value="celebration">Celebration</option>
+          <option value="minimal">Minimal Elegant</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Studio layout: paper + side panel -->
+    <div class="studio-layout">
+
+      <!-- Diary paper -->
+      <div class="paper-stage">
+        <div class="diary-paper reveal" id="diaryPaper" data-theme="vintage">
+          <svg class="paperclip" viewBox="0 0 34 54" fill="none" aria-hidden="true">
+            <path d="M9 8 V40 a8 8 0 0 0 16 0 V14 a5 5 0 0 0 -10 0 V36" stroke="#9B8778" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+
+          <div class="dear-line font-handwritten" id="dearLine">
+            <span class="static">Dear</span>
+            <input type="text" id="recipientNameField" placeholder="Name" aria-label="Recipient name">
+            <span class="static">,</span>
+          </div>
+
+          <textarea class="message-area font-handwritten size-medium" id="messageArea" placeholder="Write your heartfelt message here...
+
+Share a memory, a wish, or just how much they mean to you." aria-label="Gift message"></textarea>
+
+          <button type="button" class="photo-slot" id="photoSlot" aria-label="Add a photo">
+            <svg class="icon" viewBox="0 0 24 24" style="width:22px;height:22px;opacity:.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Add a photo</span>
+          </button>
+          <input type="file" id="photoInput" accept="image/*" style="display:none">
+
+          <div class="sticker-layer" id="stickerLayer" aria-hidden="true"></div>
+
+          <div class="signature-preview" id="signaturePreview"></div>
+        </div>
+      </div>
+
+      <!-- Side panel -->
+      <aside class="side-panel reveal">
+        <h2 class="font-serif">Personalize Your Gift</h2>
+        <p class="subtitle">Small touches make it feel like you.</p>
+
+        <div class="panel-section">
+          <h3>Cover Photo</h3>
+          <button type="button" class="upload-btn" id="coverPhotoBtn">
+            <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span id="coverPhotoLabel">Upload cover photo</span>
+          </button>
+          <input type="file" id="coverPhotoInput" accept="image/*" style="display:none">
         </div>
 
-        <div class="form-card">
-          <div class="form-card-heading"><span class="form-number">02</span><div><h2 class="font-serif">Add a memory</h2><p>Photos make your gift feel even more personal.</p></div></div>
-          <label class="upload-dropzone" for="photoInput"><input id="photoInput" type="file" accept="image/*" multiple><span class="upload-icon">＋</span><strong>Choose photos</strong><small>PNG, JPG, or WEBP</small></label>
-          <div class="photo-list" id="photoList" aria-live="polite"></div>
-        </div>
-
-        <div class="form-card">
-          <div class="form-card-heading"><span class="form-number">03</span><div><h2 class="font-serif">Choose a feeling</h2><p>Set the atmosphere for your surprise.</p></div></div>
-          <div class="theme-options" id="themeOptions">
-            <button type="button" class="theme-option selected" data-theme="blush"><span class="theme-swatch blush"></span>Soft blush</button>
-            <button type="button" class="theme-option" data-theme="lavender"><span class="theme-swatch lavender"></span>Dreamy lilac</button>
-            <button type="button" class="theme-option" data-theme="sage"><span class="theme-swatch sage"></span>Quiet sage</button>
-            <button type="button" class="theme-option" data-theme="gold"><span class="theme-swatch gold"></span>Golden hour</button>
+        <div class="panel-section">
+          <h3>Paper Style</h3>
+          <div class="swatch-row" id="paperSwatches" role="group" aria-label="Paper style">
+            <div class="swatch selected" data-paper="vintage" style="background:#F7F3EE" title="Vintage"></div>
+            <div class="swatch" data-paper="kraft" style="background:#E7D9C4" title="Kraft"></div>
+            <div class="swatch" data-paper="linen" style="background:#EFEAE2" title="Linen"></div>
+            <div class="swatch" data-paper="blush" style="background:#F6E3DE" title="Blush"></div>
           </div>
         </div>
-      </form>
 
-      <aside class="gift-preview reveal" style="transition-delay:120ms">
-        <div class="preview-label"><span></span> Live preview</div>
-        <div class="gift-preview-card theme-blush" id="giftPreview">
-          <p class="preview-occasion" id="previewOccasion">A special gift</p>
-          <h2 class="font-serif" id="previewTitle">A little something for you.</h2>
-          <p class="preview-message" id="previewMessage">Your words will appear here, ready to make someone smile.</p>
-          <div class="preview-photos" id="previewPhotos"><div class="preview-placeholder">Your memories</div></div>
-          <p class="preview-signoff">Made with care, just for <span id="previewRecipient">someone special</span></p>
+        <div class="panel-section">
+          <h3>Decorations</h3>
+          <div class="chip-row" id="decorationChips">
+            <button type="button" class="chip" data-sticker="❤️">❤️ Hearts</button>
+            <button type="button" class="chip" data-sticker="🌸">🌸 Flowers</button>
+            <button type="button" class="chip" data-sticker="⭐">⭐ Stars</button>
+            <button type="button" class="chip" data-sticker="🎀">🎀 Ribbons</button>
+          </div>
         </div>
-        <button type="submit" form="giftForm" class="btn-hero create-button">Create my gift <span>→</span></button>
-        <p class="save-note">You can come back and edit this anytime.</p>
-      </aside>
-    </section>
-  </main>
 
-  <div class="success-dialog" id="successDialog" role="dialog" aria-modal="true" aria-labelledby="successTitle" hidden>
-    <div class="success-content"><span class="success-gift">🎁</span><h2 class="font-serif" id="successTitle">Your gift is wrapped!</h2><p>It has been saved in this browser. Share it whenever you’re ready.</p><button class="btn-hero" id="closeDialog">Keep creating</button></div>
+        <div class="panel-section">
+          <h3>Add Music</h3>
+          <div class="music-row" id="musicOptions" role="group" aria-label="Background music mood">
+            <button type="button" class="music-option" data-music="none">
+              <span class="note-icon">✕</span> No music
+            </button>
+            <button type="button" class="music-option" data-music="soft-piano">
+              <span class="note-icon">♪</span> Soft Piano
+            </button>
+            <button type="button" class="music-option" data-music="acoustic">
+              <span class="note-icon">♪</span> Acoustic Warmth
+            </button>
+            <button type="button" class="music-option" data-music="nostalgic">
+              <span class="note-icon">♪</span> Nostalgic Strings
+            </button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <h3>Signature</h3>
+          <input type="text" class="signature-input" id="signatureInput" placeholder="e.g. With love, Priya" autocomplete="off">
+        </div>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ============ WRAP BAR ============ -->
+  <div class="wrap-bar">
+    <span class="hint" id="wrapHint">Write a little something to wrap your gift.</span>
+    <button type="button" class="btn-wrap" id="wrapBtn">Wrap This Gift 🎁</button>
   </div>
-  <footer class="footer"><div class="footer-inner"><div class="logo font-serif" style="font-size:1.25rem"><span>🎁</span><span>Wrapped</span></div><div class="footer-copy">© <span id="year"></span> Wrapped. Made with care.</div></div></footer>
-  <script src="script.js"></script><script src="editor.js"></script>
+
+</main>
+
+<!-- ============ WRAP PREVIEW MODAL ============ -->
+<div class="wrap-modal-overlay" id="wrapModalOverlay">
+  <div class="wrap-modal">
+    <div class="envelope" aria-hidden="true">
+      <div class="body"></div>
+      <div class="flap"></div>
+      <div class="seal">🎁</div>
+    </div>
+    <h3 class="font-serif">Your gift is wrapped.</h3>
+    <p class="preview-line" id="wrapPreviewLine">"Dear ..."</p>
+    <div class="wrap-modal-actions">
+      <a href="preview.html" class="btn-hero" id="viewGiftBtn">View Full Preview →</a>
+      <button type="button" class="wrap-modal-close" id="wrapModalClose">Keep Editing</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script src="editor.js"></script>
 </body>
 </html>
