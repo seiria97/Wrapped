@@ -514,7 +514,7 @@ a[aria-disabled="true"] {
 
 /* ---------- Floating toolbar ---------- */
 .editor-toolbar {
-  position: relative; z-index: 5;
+  position: relative; z-index: 15;
   max-width: 900px; margin: 0 auto 24px;
   display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
   padding: 10px 14px; border-radius: 999px;
