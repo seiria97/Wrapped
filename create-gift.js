@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (!occasionGrid || !continueBtn || !selectionHint) return;
 
-  var occasionCards = occasionGrid.querySelectorAll('.occasion-card');
+  var occasionCards = occasionGrid.querySelectorAll('.stationery-card');
   var selectedOccasion = null;
 
   occasionCards.forEach(function (card) {

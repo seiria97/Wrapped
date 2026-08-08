@@ -4,280 +4,289 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Write Your Gift — Wrapped</title>
-<meta name="description" content="Write a heartfelt letter, add photos and stickers, and wrap it into a personalized digital gift on Wrapped." />
+<meta name="description" content="Write a heartfelt letter, add photos and keepsakes, and wrap it into a personalized gift on Wrapped." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Parisienne&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-system.css">
 </head>
 
 <body>
 
-<!-- ============ NAVBAR (identical to other pages) ============ -->
-<header class="navbar" id="navbar">
-  <div class="navbar-inner">
-    <a href="index.html" class="logo font-serif"><span>🎁</span><span>Wrapped</span></a>
-
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="#">Templates</a>
-      <a href="#">Gallery</a>
-      <a href="#">Pricing</a>
-      <a href="#">About</a>
-    </nav>
-
-    <div class="nav-right">
-      <a href="#">Sign In</a>
-      <a href="create-gift.html" class="btn-primary">Create Gift</a>
-    </div>
-
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
-      <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+  <!-- ============ AMBIENT TEXTURE (shared across every page) ============ -->
+  <div class="ambient-texture" aria-hidden="true">
+    <div class="light-wash"></div>
+    <svg class="grain" width="100%" height="100%">
+      <filter id="grainFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.24  0 0 0 0 0.19  0 0 0 0 0.16  0 0 0 0.9 0"></feColorMatrix>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grainFilter)"></rect>
+    </svg>
+    <div class="linen"></div>
+    <svg class="corner-floral top-left" viewBox="0 0 200 200" fill="none">
+      <g opacity="0.8">
+        <ellipse cx="70" cy="90" rx="34" ry="14" fill="#B88B84" transform="rotate(20 70 90)"/>
+        <ellipse cx="95" cy="70" rx="30" ry="12" fill="#7D8A70" transform="rotate(-25 95 70)"/>
+        <circle cx="82" cy="85" r="9" fill="#8B6A58"/>
+      </g>
+    </svg>
+    <svg class="corner-floral bottom-right" viewBox="0 0 200 200" fill="none">
+      <g opacity="0.8">
+        <ellipse cx="70" cy="90" rx="38" ry="15" fill="#7D8A70" transform="rotate(15 70 90)"/>
+        <ellipse cx="100" cy="65" rx="30" ry="12" fill="#B88B84" transform="rotate(-30 100 65)"/>
+        <circle cx="80" cy="80" r="10" fill="#8B6A58"/>
+      </g>
+    </svg>
+    <span class="dust-mote" style="top:14%; left:8%; width:2px; height:2px; animation-duration:27s;"></span>
+    <span class="dust-mote" style="top:36%; left:92%; width:3px; height:3px; animation-duration:31s; animation-delay:4s;"></span>
+    <span class="dust-mote" style="top:70%; left:5%; width:2px; height:2px; animation-duration:29s; animation-delay:1s;"></span>
+    <span class="dust-mote" style="top:85%; left:88%; width:2px; height:2px; animation-duration:33s; animation-delay:5s;"></span>
   </div>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="#">Templates</a>
-    <a href="#">Gallery</a>
-    <a href="#">Pricing</a>
-    <a href="#">About</a>
-    <a href="#">Sign In</a>
-    <a href="create-gift.html" class="btn-primary" style="width:fit-content">Create Gift</a>
-  </div>
-</header>
+  <!-- ============ NAV — wordmark only ============ -->
+  <header class="site-nav">
+    <a href="index.html" class="wordmark-link">Wrapped</a>
+  </header>
 
-<main>
+  <main>
 
-  <!-- ============ PAGE HERO (compact — reuses .page-hero / .step-progress) ============ -->
-  <section class="page-hero" style="padding-bottom: 32px;">
-    <div class="page-hero-inner reveal">
-      <h1 class="font-serif">Let's put it into words.</h1>
-      <p class="lead opacity-70">Write from the heart — you can add photos, stickers, and music as you go.</p>
+    <!-- ============ PAGE HERO (compact) ============ -->
+    <section class="page-hero" style="padding-bottom: 20px;">
+      <div class="page-hero-inner fade-rise d1">
+        <h1>Let's put it into words.</h1>
+        <p class="lead">Write from the heart — you can add photos, keepsakes, and music as you go.</p>
 
-      <div class="step-progress">
-        <div class="step done">
-          <span class="dot">✓</span> Occasion
-        </div>
-        <span class="connector"></span>
-        <div class="step done">
-          <span class="dot">✓</span> Recipient
-        </div>
-        <span class="connector"></span>
-        <div class="step active">
-          <span class="dot">3</span> Customize
+        <div class="step-progress">
+          <div class="step done"><span class="dot">✓</span> Occasion</div>
+          <span class="connector"></span>
+          <div class="step done"><span class="dot">✓</span> Recipient</div>
+          <span class="connector"></span>
+          <div class="step active"><span class="dot">3</span> Customize</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ WRITING STUDIO ============ -->
-  <section class="studio">
-    <div class="studio-bg" aria-hidden="true">
-      <span class="float-token" style="top:8%; left:6%; animation-duration:9s;">🌸</span>
-      <span class="float-token" style="top:14%; left:88%; animation-duration:11s;">✨</span>
-      <span class="float-token" style="top:42%; left:3%; animation-duration:8s;">📎</span>
-      <span class="float-token" style="top:70%; left:92%; animation-duration:10s;">🌿</span>
-      <span class="float-token" style="top:85%; left:10%; animation-duration:12s;">💌</span>
-      <span class="float-token" style="top:30%; left:95%; animation-duration:9.5s;">⭐</span>
-    </div>
+    <!-- ============ WRITING STUDIO ============ -->
+    <section class="studio">
 
-    <!-- Floating toolbar -->
-    <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
-      <div class="toolbar-group">
-        <span class="toolbar-label">Font</span>
-        <select class="toolbar-select" id="fontSelect" aria-label="Font style">
-          <option value="handwritten" selected>Handwritten</option>
-          <option value="elegant">Elegant Serif</option>
-          <option value="modern">Modern Clean</option>
-        </select>
-      </div>
-
-      <div class="toolbar-divider"></div>
-
-      <div class="toolbar-group">
-        <span class="toolbar-label">Size</span>
-        <select class="toolbar-select" id="sizeSelect" aria-label="Text size">
-          <option value="small">Small</option>
-          <option value="medium" selected>Medium</option>
-          <option value="large">Large</option>
-        </select>
-      </div>
-
-      <div class="toolbar-divider"></div>
-
-      <div class="toolbar-group" role="group" aria-label="Text alignment">
-        <button type="button" class="toolbar-btn active" data-align="left" title="Align left">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
-        </button>
-        <button type="button" class="toolbar-btn" data-align="center" title="Align center">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
-        </button>
-        <button type="button" class="toolbar-btn" data-align="right" title="Align right">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><line x1="3" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="6" y1="18" x2="21" y2="18"/></svg>
-        </button>
-      </div>
-
-      <div class="toolbar-divider"></div>
-
-      <div class="toolbar-group toolbar-btn-wrap">
-        <button type="button" class="toolbar-btn" id="stickerToggle" title="Add sticker" aria-haspopup="true" aria-expanded="false">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/></svg>
-        </button>
-        <div class="sticker-popover" id="stickerPopover">
-          <button type="button" data-sticker="❤️" title="Heart">❤️</button>
-          <button type="button" data-sticker="🌸" title="Flower">🌸</button>
-          <button type="button" data-sticker="🌷" title="Tulip">🌷</button>
-          <button type="button" data-sticker="⭐" title="Star">⭐</button>
-          <button type="button" data-sticker="✨" title="Sparkle">✨</button>
-          <button type="button" data-sticker="🎀" title="Ribbon">🎀</button>
-          <button type="button" data-sticker="🕊️" title="Dove">🕊️</button>
-          <button type="button" data-sticker="🍃" title="Leaf">🍃</button>
-          <button type="button" data-sticker="💫" title="Dizzy">💫</button>
-          <button type="button" data-sticker="🧸" title="Bear">🧸</button>
+      <!-- Floating toolbar -->
+      <div class="editor-toolbar fade-rise d2" role="toolbar" aria-label="Text formatting">
+        <div class="toolbar-group">
+          <span class="toolbar-label">Font</span>
+          <select class="toolbar-select" id="fontSelect" aria-label="Font style">
+            <option value="handwritten" selected>Handwritten</option>
+            <option value="modern">Modern Clean</option>
+          </select>
         </div>
-      </div>
 
-      <div class="toolbar-divider"></div>
+        <div class="toolbar-divider"></div>
 
-      <div class="toolbar-group">
-        <button type="button" class="toolbar-btn" id="addPhotoToolbarBtn" title="Add photo">
-          <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-        </button>
-      </div>
+        <div class="toolbar-group">
+          <span class="toolbar-label">Size</span>
+          <select class="toolbar-select" id="sizeSelect" aria-label="Text size">
+            <option value="small">Small</option>
+            <option value="medium" selected>Medium</option>
+            <option value="large">Large</option>
+          </select>
+        </div>
 
-      <div class="toolbar-divider"></div>
+        <div class="toolbar-divider"></div>
 
-      <div class="toolbar-group">
-        <span class="toolbar-label">Theme</span>
-        <select class="toolbar-select" id="themeSelect" aria-label="Background theme">
-          <option value="vintage" selected>Vintage Diary</option>
-          <option value="romantic">Romantic Letter</option>
-          <option value="celebration">Celebration</option>
-          <option value="minimal">Minimal Elegant</option>
-        </select>
-      </div>
-    </div>
+        <div class="toolbar-group" role="group" aria-label="Text alignment">
+          <button type="button" class="toolbar-btn active" data-align="left" title="Align left">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+          </button>
+          <button type="button" class="toolbar-btn" data-align="center" title="Align center">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="6" y1="12" x2="18" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+          </button>
+          <button type="button" class="toolbar-btn" data-align="right" title="Align right">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="9" y1="12" x2="21" y2="12"/><line x1="6" y1="18" x2="21" y2="18"/></svg>
+          </button>
+        </div>
 
-    <!-- Studio layout: paper + side panel -->
-    <div class="studio-layout">
+        <div class="toolbar-divider"></div>
 
-      <!-- Diary paper -->
-      <div class="paper-stage">
-        <div class="diary-paper reveal" id="diaryPaper" data-theme="vintage">
-          <svg class="paperclip" viewBox="0 0 34 54" fill="none" aria-hidden="true">
-            <path d="M9 8 V40 a8 8 0 0 0 16 0 V14 a5 5 0 0 0 -10 0 V36" stroke="#9B8778" stroke-width="3.5" stroke-linecap="round"/>
-          </svg>
-
-          <div class="dear-line font-handwritten" id="dearLine">
-            <span class="static">Dear</span>
-            <input type="text" id="recipientNameField" placeholder="Name" aria-label="Recipient name">
-            <span class="static">,</span>
+        <div class="toolbar-group toolbar-btn-wrap">
+          <button type="button" class="toolbar-btn" id="stickerToggle" title="Add a keepsake mark" aria-haspopup="true" aria-expanded="false">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-4.8-3-9-6.6-9-11A5 5 0 0 1 12 6a5 5 0 0 1 9 3.5c0 4.4-4.2 8-9 11z"/></svg>
+          </button>
+          <div class="sticker-popover" id="stickerPopover">
+            <button type="button" data-sticker="heart" title="Heart">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-4.8-3-9-6.6-9-11A5 5 0 0 1 12 6a5 5 0 0 1 9 3.5c0 4.4-4.2 8-9 11z"/></svg>
+            </button>
+            <button type="button" data-sticker="flower" title="Flower">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1.3-1.7-1.3-4 0-5.3 1.3 1.3 1.3 3.6 0 5.3z"/><path d="M12 14c1.3 1.7 1.3 4 0 5.3-1.3-1.3-1.3-3.6 0-5.3z"/><path d="M10 12c-1.7-1.3-4-1.3-5.3 0 1.3 1.3 3.6 1.3 5.3 0z"/><path d="M14 12c1.7-1.3 4-1.3 5.3 0-1.3 1.3-3.6 1.3-5.3 0z"/></svg>
+            </button>
+            <button type="button" data-sticker="star" title="Star">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.8-4.3 6.4-.6z"/></svg>
+            </button>
+            <button type="button" data-sticker="ribbon" title="Ribbon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12C7 6 3 7 3 10c0 3 5 3 9 2Z"/><path d="M12 12c5-6 9-5 9-2 0 3-5 3-9 2Z"/><circle cx="12" cy="12" r="1.4"/></svg>
+            </button>
+            <button type="button" data-sticker="leaf" title="Leaf">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6-4-8-4-12a4 4 0 0 1 8 0c0 4-4 6-4 12z"/><path d="M12 9V5"/></svg>
+            </button>
           </div>
+        </div>
 
-          <textarea class="message-area font-handwritten size-medium" id="messageArea" placeholder="Write your heartfelt message here...
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-group">
+          <button type="button" class="toolbar-btn" id="addPhotoToolbarBtn" title="Add photo">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-group">
+          <span class="toolbar-label">Theme</span>
+          <select class="toolbar-select" id="themeSelect" aria-label="Background theme">
+            <option value="vintage" selected>Vintage Diary</option>
+            <option value="romantic">Romantic Letter</option>
+            <option value="celebration">Celebration</option>
+            <option value="minimal">Minimal Elegant</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Studio layout: paper + side panel -->
+      <div class="studio-layout">
+
+        <!-- Diary paper -->
+        <div class="paper-stage">
+          <div class="diary-paper fade-rise d3" id="diaryPaper" data-theme="vintage">
+            <svg class="paperclip" viewBox="0 0 34 54" fill="none" aria-hidden="true">
+              <path d="M9 8 V40 a8 8 0 0 0 16 0 V14 a5 5 0 0 0 -10 0 V36" stroke="#9B8778" stroke-width="3.5" stroke-linecap="round"/>
+            </svg>
+
+            <div class="dear-line" id="dearLine">
+              <span class="static">Dear</span>
+              <input type="text" id="recipientNameField" placeholder="Name" aria-label="Recipient name">
+              <span class="static">,</span>
+            </div>
+
+            <textarea class="message-area size-medium" id="messageArea" placeholder="Write your heartfelt message here...
 
 Share a memory, a wish, or just how much they mean to you." aria-label="Gift message"></textarea>
 
-          <button type="button" class="photo-slot" id="photoSlot" aria-label="Add a photo">
-            <svg class="icon" viewBox="0 0 24 24" style="width:22px;height:22px;opacity:.6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-            <span>Add a photo</span>
-          </button>
-          <input type="file" id="photoInput" accept="image/*" style="display:none">
+            <button type="button" class="photo-slot" id="photoSlot" aria-label="Add a photo">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".6"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+              <span>Add a photo</span>
+            </button>
+            <input type="file" id="photoInput" accept="image/*" style="display:none">
 
-          <div class="sticker-layer" id="stickerLayer" aria-hidden="true"></div>
+            <div class="sticker-layer" id="stickerLayer" aria-hidden="true"></div>
 
-          <div class="signature-preview" id="signaturePreview"></div>
+            <div class="signature-preview" id="signaturePreview"></div>
+          </div>
+        </div>
+
+        <!-- Side panel -->
+        <aside class="side-panel paper-card fade-rise d4">
+          <h2>Personalize Your Gift</h2>
+          <p class="subtitle">Small touches make it feel like you.</p>
+
+          <div class="panel-section">
+            <h3>Cover Photo</h3>
+            <button type="button" class="upload-btn" id="coverPhotoBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              <span id="coverPhotoLabel">Upload cover photo</span>
+            </button>
+            <input type="file" id="coverPhotoInput" accept="image/*" style="display:none">
+          </div>
+
+          <div class="panel-section">
+            <h3>Paper Style</h3>
+            <div class="swatch-row" id="paperSwatches" role="group" aria-label="Paper style">
+              <div class="swatch selected" data-paper="vintage" style="background:#F7F1E7" title="Warm Paper"></div>
+              <div class="swatch" data-paper="kraft" style="background:#E7D9C4" title="Kraft"></div>
+              <div class="swatch" data-paper="linen" style="background:#EFEAE2" title="Linen"></div>
+              <div class="swatch" data-paper="blush" style="background:#F3E4DE" title="Blush"></div>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h3>Decorations</h3>
+            <div class="chip-row" id="decorationChips">
+              <button type="button" class="chip" data-sticker="heart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-4.8-3-9-6.6-9-11A5 5 0 0 1 12 6a5 5 0 0 1 9 3.5c0 4.4-4.2 8-9 11z"/></svg>
+                Hearts
+              </button>
+              <button type="button" class="chip" data-sticker="flower">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1.3-1.7-1.3-4 0-5.3 1.3 1.3 1.3 3.6 0 5.3z"/><path d="M12 14c1.3 1.7 1.3 4 0 5.3-1.3-1.3-1.3-3.6 0-5.3z"/><path d="M10 12c-1.7-1.3-4-1.3-5.3 0 1.3 1.3 3.6 1.3 5.3 0z"/><path d="M14 12c1.7-1.3 4-1.3 5.3 0-1.3 1.3-3.6 1.3-5.3 0z"/></svg>
+                Flowers
+              </button>
+              <button type="button" class="chip" data-sticker="star">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.8-4.3 6.4-.6z"/></svg>
+                Stars
+              </button>
+              <button type="button" class="chip" data-sticker="ribbon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12C7 6 3 7 3 10c0 3 5 3 9 2Z"/><path d="M12 12c5-6 9-5 9-2 0 3-5 3-9 2Z"/><circle cx="12" cy="12" r="1.4"/></svg>
+                Ribbons
+              </button>
+              <button type="button" class="chip" data-sticker="leaf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6-4-8-4-12a4 4 0 0 1 8 0c0 4-4 6-4 12z"/><path d="M12 9V5"/></svg>
+                Leaves
+              </button>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h3>Add Music</h3>
+            <div class="music-row" id="musicOptions" role="group" aria-label="Background music mood">
+              <button type="button" class="music-option" data-music="none">
+                <span class="note-icon">✕</span> No music
+              </button>
+              <button type="button" class="music-option" data-music="soft-piano">
+                <span class="note-icon">♪</span> Soft Piano
+              </button>
+              <button type="button" class="music-option" data-music="acoustic">
+                <span class="note-icon">♪</span> Acoustic Warmth
+              </button>
+              <button type="button" class="music-option" data-music="nostalgic">
+                <span class="note-icon">♪</span> Nostalgic Strings
+              </button>
+            </div>
+          </div>
+
+          <div class="panel-section">
+            <h3>Signature</h3>
+            <input type="text" class="field-input" id="signatureInput" placeholder="With love, ..." autocomplete="off">
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ============ WRAP BAR ============ -->
+    <div class="wrap-bar">
+      <span class="hint" id="wrapHint">Write a little something to wrap your gift.</span>
+      <button type="button" class="btn btn-primary" id="wrapBtn">Wrap This Gift</button>
+    </div>
+
+  </main>
+
+  <!-- ============ WRAP PREVIEW MODAL — closing the letter, sealing it, presenting it ============ -->
+  <div class="wrap-modal-overlay" id="wrapModalOverlay">
+    <div class="wrap-modal paper-card">
+      <div class="envelope" aria-hidden="true">
+        <div class="body"></div>
+        <div class="flap"></div>
+        <div class="seal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-4.8-3-9-6.6-9-11A5 5 0 0 1 12 6a5 5 0 0 1 9 3.5c0 4.4-4.2 8-9 11z"/></svg>
         </div>
       </div>
-
-      <!-- Side panel -->
-      <aside class="side-panel reveal">
-        <h2 class="font-serif">Personalize Your Gift</h2>
-        <p class="subtitle">Small touches make it feel like you.</p>
-
-        <div class="panel-section">
-          <h3>Cover Photo</h3>
-          <button type="button" class="upload-btn" id="coverPhotoBtn">
-            <svg class="icon" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <span id="coverPhotoLabel">Upload cover photo</span>
-          </button>
-          <input type="file" id="coverPhotoInput" accept="image/*" style="display:none">
-        </div>
-
-        <div class="panel-section">
-          <h3>Paper Style</h3>
-          <div class="swatch-row" id="paperSwatches" role="group" aria-label="Paper style">
-            <div class="swatch selected" data-paper="vintage" style="background:#F7F3EE" title="Vintage"></div>
-            <div class="swatch" data-paper="kraft" style="background:#E7D9C4" title="Kraft"></div>
-            <div class="swatch" data-paper="linen" style="background:#EFEAE2" title="Linen"></div>
-            <div class="swatch" data-paper="blush" style="background:#F6E3DE" title="Blush"></div>
-          </div>
-        </div>
-
-        <div class="panel-section">
-          <h3>Decorations</h3>
-          <div class="chip-row" id="decorationChips">
-            <button type="button" class="chip" data-sticker="❤️">❤️ Hearts</button>
-            <button type="button" class="chip" data-sticker="🌸">🌸 Flowers</button>
-            <button type="button" class="chip" data-sticker="⭐">⭐ Stars</button>
-            <button type="button" class="chip" data-sticker="🎀">🎀 Ribbons</button>
-          </div>
-        </div>
-
-        <div class="panel-section">
-          <h3>Add Music</h3>
-          <div class="music-row" id="musicOptions" role="group" aria-label="Background music mood">
-            <button type="button" class="music-option" data-music="none">
-              <span class="note-icon">✕</span> No music
-            </button>
-            <button type="button" class="music-option" data-music="soft-piano">
-              <span class="note-icon">♪</span> Soft Piano
-            </button>
-            <button type="button" class="music-option" data-music="acoustic">
-              <span class="note-icon">♪</span> Acoustic Warmth
-            </button>
-            <button type="button" class="music-option" data-music="nostalgic">
-              <span class="note-icon">♪</span> Nostalgic Strings
-            </button>
-          </div>
-        </div>
-
-        <div class="panel-section">
-          <h3>Signature</h3>
-          <input type="text" class="signature-input" id="signatureInput" placeholder="e.g. With love, Priya" autocomplete="off">
-        </div>
-      </aside>
-
-    </div>
-  </section>
-
-  <!-- ============ WRAP BAR ============ -->
-  <div class="wrap-bar">
-    <span class="hint" id="wrapHint">Write a little something to wrap your gift.</span>
-    <button type="button" class="btn-wrap" id="wrapBtn">Wrap This Gift 🎁</button>
-  </div>
-
-</main>
-
-<!-- ============ WRAP PREVIEW MODAL ============ -->
-<div class="wrap-modal-overlay" id="wrapModalOverlay">
-  <div class="wrap-modal">
-    <div class="envelope" aria-hidden="true">
-      <div class="body"></div>
-      <div class="flap"></div>
-      <div class="seal">🎁</div>
-    </div>
-    <h3 class="font-serif">Your gift is wrapped.</h3>
-    <p class="preview-line" id="wrapPreviewLine">"Dear ..."</p>
-    <div class="wrap-modal-actions">
-      <a href="preview.html" class="btn-hero" id="viewGiftBtn">View Full Preview →</a>
-      <button type="button" class="wrap-modal-close" id="wrapModalClose">Keep Editing</button>
+      <h3>Your gift is wrapped.</h3>
+      <p class="preview-line" id="wrapPreviewLine">"Dear ..."</p>
+      <div class="wrap-modal-actions">
+        <a href="preview.html" class="btn btn-primary" id="viewGiftBtn">View Full Preview →</a>
+        <button type="button" class="wrap-modal-close" id="wrapModalClose">Keep Editing</button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="script.js"></script>
 <script src="editor.js"></script>
 </body>
 </html>

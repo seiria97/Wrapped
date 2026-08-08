@@ -102,14 +102,26 @@ function initStickers() {
     });
   });
 
+  // Line-art icon paths for each sticker type — kept in sync with the
+  // matching icons drawn inline in the toolbar popover and side-panel chips.
+  var STICKER_ICONS = {
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-4.8-3-9-6.6-9-11A5 5 0 0 1 12 6a5 5 0 0 1 9 3.5c0 4.4-4.2 8-9 11z"/></svg>',
+    flower: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M12 10c-1.3-1.7-1.3-4 0-5.3 1.3 1.3 1.3 3.6 0 5.3z"/><path d="M12 14c1.3 1.7 1.3 4 0 5.3-1.3-1.3-1.3-3.6 0-5.3z"/><path d="M10 12c-1.7-1.3-4-1.3-5.3 0 1.3 1.3 3.6 1.3 5.3 0z"/><path d="M14 12c1.7-1.3 4-1.3 5.3 0-1.3 1.3-3.6 1.3-5.3 0z"/></svg>',
+    star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 20l1.4-6.2-4.8-4.3 6.4-.6z"/></svg>',
+    ribbon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 12C7 6 3 7 3 10c0 3 5 3 9 2Z"/><path d="M12 12c5-6 9-5 9-2 0 3-5 3-9 2Z"/><circle cx="12" cy="12" r="1.4"/></svg>',
+    leaf: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6-4-8-4-12a4 4 0 0 1 8 0c0 4-4 6-4 12z"/><path d="M12 9V5"/></svg>'
+  };
+
   /**
    * Drops a new sticker onto the diary paper at a gentle random spot and
-   * makes it draggable via pointer events.
+   * makes it draggable via pointer events. `key` is one of STICKER_ICONS
+   * (heart/flower/star/ribbon/leaf) so the placed mark stays consistent
+   * hand-drawn line-art rather than a raw emoji glyph.
    */
-  function placeSticker(emoji) {
+  function placeSticker(key) {
     var sticker = document.createElement('span');
     sticker.className = 'placed-sticker';
-    sticker.textContent = emoji;
+    sticker.innerHTML = STICKER_ICONS[key] || STICKER_ICONS.heart;
 
     var top = 8 + Math.random() * 70;
     var left = 8 + Math.random() * 78;
