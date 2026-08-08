@@ -3,225 +3,90 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Wrapped -Say more than words ever could.</title>
-<meta name="description" content="Create beautiful personalized digital gifts filled with letters, memories, photos, and music for every meaningful moment." />
+<title>Wrapped — Create something worth opening twice.</title>
+<meta name="description" content="A place to turn your words, memories, music, and moments into a gift made for one person." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Parisienne&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="design-system.css">
 </head>
 
 <body>
 
-<!-- ============ NAVBAR ============ -->
-<header class="navbar" id="navbar">
-  <div class="navbar-inner">
-    <a href="index.html" class="logo font-serif"><span>🎁</span><span>Wrapped</span></a>
+  <!-- ============ AMBIENT TEXTURE (paper grain, linen, corner florals, dust) ============ -->
+  <div class="ambient-texture" aria-hidden="true">
+    <div class="light-wash"></div>
 
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">Templates</a>
-      <a href="#">Gallery</a>
-      <a href="#">Pricing</a>
-      <a href="#">About</a>
-    </nav>
+    <svg class="grain" width="100%" height="100%">
+      <filter id="grainFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.24  0 0 0 0 0.19  0 0 0 0 0.16  0 0 0 0.9 0"></feColorMatrix>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#grainFilter)"></rect>
+    </svg>
 
-    <div class="nav-right">
-      <a href="#">Sign In</a>
-      <a href="create-gift.html" class="btn-primary">Create Gift</a>
-    </div>
+    <div class="linen"></div>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
-      <svg class="icon" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    </button>
+    <!-- Pressed-flower silhouettes, blurred, tucked into two corners -->
+    <svg class="corner-floral top-left" viewBox="0 0 200 200" fill="none">
+      <g opacity="0.8">
+        <ellipse cx="70" cy="90" rx="34" ry="14" fill="#B88B84" transform="rotate(20 70 90)"/>
+        <ellipse cx="95" cy="70" rx="30" ry="12" fill="#7D8A70" transform="rotate(-25 95 70)"/>
+        <ellipse cx="60" cy="60" rx="26" ry="11" fill="#C6A86D" transform="rotate(60 60 60)"/>
+        <ellipse cx="100" cy="105" rx="28" ry="12" fill="#5E684D" transform="rotate(100 100 105)"/>
+        <circle cx="82" cy="85" r="9" fill="#8B6A58"/>
+        <path d="M82 85 C 60 130, 40 150, 20 170" stroke="#5E684D" stroke-width="2" fill="none"/>
+      </g>
+    </svg>
+    <svg class="corner-floral bottom-right" viewBox="0 0 200 200" fill="none">
+      <g opacity="0.8">
+        <ellipse cx="70" cy="90" rx="38" ry="15" fill="#7D8A70" transform="rotate(15 70 90)"/>
+        <ellipse cx="100" cy="65" rx="30" ry="12" fill="#B88B84" transform="rotate(-30 100 65)"/>
+        <ellipse cx="55" cy="55" rx="24" ry="10" fill="#C6A86D" transform="rotate(70 55 55)"/>
+        <circle cx="80" cy="80" r="10" fill="#8B6A58"/>
+        <path d="M80 80 C 100 125, 120 145, 145 165" stroke="#5E684D" stroke-width="2" fill="none"/>
+      </g>
+    </svg>
+
+    <!-- Slow-drifting dust motes -->
+    <span class="dust-mote" style="top:18%; left:22%; width:3px; height:3px; animation-duration:26s;"></span>
+    <span class="dust-mote" style="top:32%; left:72%; width:2px; height:2px; animation-duration:32s; animation-delay:2s;"></span>
+    <span class="dust-mote" style="top:58%; left:14%; width:2px; height:2px; animation-duration:29s; animation-delay:5s;"></span>
+    <span class="dust-mote" style="top:70%; left:80%; width:3px; height:3px; animation-duration:35s; animation-delay:1s;"></span>
+    <span class="dust-mote" style="top:44%; left:50%; width:2px; height:2px; animation-duration:30s; animation-delay:8s;"></span>
+    <span class="dust-mote" style="top:12%; left:60%; width:2px; height:2px; animation-duration:27s; animation-delay:4s;"></span>
+    <span class="dust-mote" style="top:82%; left:40%; width:3px; height:3px; animation-duration:33s; animation-delay:6s;"></span>
   </div>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#">Home</a>
-    <a href="#">Templates</a>
-    <a href="#">Gallery</a>
-    <a href="#">Pricing</a>
-    <a href="#">About</a>
-    <a href="#">Sign In</a>
-    <a href="create-gift.html" class="btn-primary" style="width:fit-content">Create Gift</a>
-  </div>
-</header>
+  <!-- ============ HERO — the entire page ============ -->
+  <main class="home-hero">
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="hero-bg">
-    <div class="blob" style="top:8%; left:6%; width:220px; height:220px; background:var(--blush); filter:blur(60px); animation-duration:14s;"></div>
-    <div class="blob" style="top:18%; left:82%; width:260px; height:260px; background:var(--lavender); filter:blur(70px); animation-duration:18s;"></div>
-    <div class="blob" style="top:62%; left:4%; width:200px; height:200px; background:var(--sage); filter:blur(55px); animation-duration:16s;"></div>
-    <div class="blob" style="top:72%; left:88%; width:240px; height:240px; background:var(--gold); filter:blur(80px); animation-duration:20s;"></div>
-    <span class="star twinkle-anim" style="top:12%; left:22%; width:3px; height:3px;"></span>
-    <span class="star twinkle-anim" style="top:34%; left:65%; width:2px; height:2px; animation-delay:.7s;"></span>
-    <span class="star twinkle-anim" style="top:55%; left:12%; width:4px; height:4px; animation-delay:1.4s;"></span>
-    <span class="star twinkle-anim" style="top:78%; left:48%; width:2px; height:2px; animation-delay:2.1s;"></span>
-    <span class="star twinkle-anim" style="top:25%; left:90%; width:3px; height:3px; animation-delay:2.8s;"></span>
-  </div>
-
-  <div class="hero-grid">
-    <div class="reveal">
-      <h1>Say more than words ever could.</h1>
-      <p class="lead">Create beautiful digital gifts filled with letters, memories, photos, and surprises for birthdays, anniversaries, graduations, weddings, thank-you notes, and every meaningful moment.</p>
-      <div class="hero-actions">
-        <a href="create-gift.html" class="btn-hero"> Send a Gift</a>
-      </div>
+    <div class="wordmark-wrap fade-rise d1">
+      <div class="washi-tape" aria-hidden="true"></div>
+      <h1 class="wordmark">Wrapped</h1>
+      <span class="accent-script eyebrow-script">for someone you love</span>
     </div>
 
-    <div class="reveal" style="transition-delay:150ms">
-      <div class="gift-wrap">
-        <div class="gift-shadow"></div>
-        <div class="gift-scene float-anim">
-          <div class="gift-glow"></div>
-          <div class="gift-body"></div>
-          <div class="gift-lid"></div>
-          <div class="gift-bow">
-            <svg width="90" height="60" viewBox="0 0 90 60" fill="none">
-              <path d="M45 30 C20 5, 0 15, 8 32 C16 48, 38 40, 45 30Z" fill="#F4C95D" />
-              <path d="M45 30 C70 5, 90 15, 82 32 C74 48, 52 40, 45 30Z" fill="#F4C95D" />
-              <circle cx="45" cy="30" r="9" fill="#FFF9F5" />
-            </svg>
-          </div>
-          <svg class="icon icon-sparkle sparkle-anim" viewBox="0 0 24 24" fill="#F4C95D" stroke="none" style="top:-8px; right:24px; width:22px; height:22px;">
-            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/>
-          </svg>
-          <svg class="icon icon-sparkle sparkle-anim" viewBox="0 0 24 24" fill="#E8DDF8" stroke="none" style="top:40px; left:8px; width:16px; height:16px; animation-delay:1s;">
-            <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="tagline fade-rise d2">Create something worth opening twice.</p>
 
-<!-- stat section goes here -->
-<!-- ============ HOW IT WORKS ============ -->
-<section class="how">
-  <h2 class="section-title font-serif reveal">How it works</h2>
-  <div class="how-grid">
-    <div class="dot-line"></div>
+    <p class="description fade-rise d3">A place to turn your words, memories, music, and moments into a gift made for one person.</p>
 
-    <div class="reveal how-card">
-      <div class="how-icon" style="background:var(--blush)">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
-      </div>
-      <h3>Choose an Occasion</h3>
-      <p>Choose from Birthday, Anniversary, Graduation, Wedding, Thank You, Long Distance, Love Letter, Just Because, and more.</p>
-    </div>
+    <svg class="stitched-divider fade-rise d3" viewBox="0 0 74 10" aria-hidden="true">
+      <line x1="0" y1="5" x2="74" y2="5" stroke="#B88B84" stroke-width="1" stroke-dasharray="3 4"/>
+    </svg>
 
-    <div class="reveal how-card" style="transition-delay:150ms">
-      <div class="how-icon" style="background:var(--lavender)">
-        <svg class="icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      </div>
-      <h3>Customize Your Gift</h3>
-      <p>Write letters, upload photos, memories, and personalize every detail.</p>
-    </div>
+    <a href="create-gift.html" class="btn btn-primary btn-begin fade-rise d4">Begin</a>
 
-    <div class="reveal how-card" style="transition-delay:300ms">
-      <div class="how-icon" style="background:var(--sage)">
-        <svg class="icon" viewBox="0 0 24 24"><path d="M5.8 11.3L2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="M22 2l-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2z"/></svg>
-      </div>
-      <h3>Share the Surprise</h3>
-      <p>Send a beautiful link and let your loved one unwrap a magical digital gift.</p>
-    </div>
-  </div>
-</section>
+    <svg class="wax-seal-corner" viewBox="0 0 46 46" aria-hidden="true">
+      <path d="M23 3 C29 3 33 5 36 8 C40 5 44 8 43 13 C46 15 46 20 43 23 C46 27 44 32 40 32 C40 37 36 40 32 38 C29 42 24 42 21 38 C16 40 12 37 13 32 C8 32 6 27 9 23 C6 20 6 15 9 13 C7 8 12 5 16 8 C18 5 20 3 23 3 Z"
+            fill="#B88B84" opacity="0.92"/>
+      <path d="M23 3 C29 3 33 5 36 8 C40 5 44 8 43 13 C46 15 46 20 43 23 C46 27 44 32 40 32 C40 37 36 40 32 38 C29 42 24 42 21 38 C16 40 12 37 13 32 C8 32 6 27 9 23 C6 20 6 15 9 13 C7 8 12 5 16 8 C18 5 20 3 23 3 Z"
+            fill="none" stroke="#8B6A58" stroke-width="0.6" opacity="0.5"/>
+      <path d="M23 15 C19 11 13 14 13 19 C13 24 18 28 23 33 C28 28 33 24 33 19 C33 14 27 11 23 15 Z"
+            fill="#F7F1E7" opacity="0.7"/>
+    </svg>
 
+  </main>
 
-
-<!-- ============ FEATURED PREVIEW ============ -->
-<section class="preview">
-  <div class="preview-intro reveal">
-    <h2 class="section-title font-serif" style="margin-bottom:0">A glimpse inside</h2>
-    <p>Every gift becomes its own little world.</p>
-  </div>
-
-  <div class="reveal browser-mock">
-    <div class="browser-bar">
-      <span style="background:#F8D7DA"></span>
-      <span style="background:#F4C95D"></span>
-      <span style="background:#CFE8D2"></span>
-    </div>
-
-    <div class="preview-body">
-      <span class="live-badge"><span class="live-dot pulse-anim"></span> Live Preview</span>
-
-      <p class="eyebrow">For Rhythm</p>
-      <h3 class="font-serif">Happy birthday to my favorite person.</h3>
-      <p class="desc">having you by my side felt like a blessing and it does still to this day, I hope you enjoy the upcomming year as much as i enjoy my time with you, Happy Birthday to you Solukhumbu</p>
-
-      <div class="preview-details">
-        <div class="polaroids">
-          <div class="polaroid" style="transform:rotate(-8deg)"><div class="fill" style="background:#F8D7DA"></div></div>
-          <div class="polaroid"><div class="fill" style="background:#E8DDF8"></div></div>
-          <div class="polaroid" style="transform:rotate(8deg)"><div class="fill" style="background:#CFE8D2"></div></div>
-        </div>
-
-
-        <div class="timeline">
-          <svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;opacity:.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <div class="timeline-dots">
-            <span></span><span></span><span class="active"></span><span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TESTIMONIALS ============ -->
-<section class="testimonials section-beige">
-  <div class="test-grid">
-    <div class="reveal test-card">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"I've never seen my sister cry from happiness until she opened the gift I made here."</p>
-      <div class="test-author">
-        <div class="avatar" style="background:#F8D7DA">P</div>
-        <span class="name">Priya S.</span>
-      </div>
-    </div>
-
-    <div class="reveal test-card" style="transition-delay:120ms">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"It felt like handing someone a piece of my memory instead of just a message."</p>
-      <div class="test-author">
-        <div class="avatar" style="background:#E8DDF8">D</div>
-        <span class="name">Daniel R.</span>
-      </div>
-    </div>
-
-    <div class="reveal test-card" style="transition-delay:240ms">
-      <div class="stars">★★★★★</div>
-      <p class="quote">"My long-distance partner said it was the closest thing to being home for her birthday."</p>
-      <div class="test-author">
-        <div class="avatar" style="background:#CFE8D2">W</div>
-        <span class="name">Wei L.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FINAL CTA ============ -->
-<section class="final-cta">
-  <div class="final-cta-bg"></div>
-  <div class="reveal final-cta-content">
-    <h2 class="font-serif">Ready to make someone's day unforgettable?</h2>
-    <p>It only takes a few minutes to create something they'll remember forever.</p>
-    <a href="create-gift.html" class="btn-final">🎁 Create Your First Gift</a>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="logo font-serif" style="font-size:1.25rem"><span>🎁</span><span>Wrapped</span></div>
-  
-    <div class="footer-copy">© <span id="year"></span> Wrapped. Made with care.</div>
-  </div>
-</footer>
-
-<script src="script.js"></script>
 </body>
 </html>
